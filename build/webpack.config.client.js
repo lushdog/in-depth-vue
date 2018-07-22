@@ -24,6 +24,7 @@ const devServer = {
   },
   hot: true
 }
+
 let config
 
 if (isDev) {
@@ -34,7 +35,7 @@ if (isDev) {
         {
           test: /\.styl/,
           use: [
-            'style-loader',
+            'vue-style-loader',
             'css-loader',
             {
               loader: 'postcss-loader',
@@ -49,15 +50,15 @@ if (isDev) {
     },
     devServer,
     plugins: defaultPluins.concat([
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin()
+      new webpack.HotModuleReplacementPlugin()
+      // new webpack.NoEmitOnErrorsPlugin()
     ])
   })
 } else {
   config = merge(baseConfig, {
     entry: {
-      app: path.join(__dirname, '../client/index.js'),
-      vendor: ['vue']
+      app: path.join(__dirname, '../client/index.js')
+      // vendor: ['vue']
     },
     output: {
       filename: '[name].[chunkhash:8].js'
@@ -67,7 +68,7 @@ if (isDev) {
         {
           test: /\.styl/,
           use: ExtractPlugin.extract({
-            fallback: 'style-loader',
+            fallback: 'vue-style-loader',
             use: [
               'css-loader',
               {
@@ -82,14 +83,20 @@ if (isDev) {
         }
       ]
     },
+    optimization: {
+      splitChunks: {
+        chunks: 'all'
+      },
+      runtimeChunk: true
+    },
     plugins: defaultPluins.concat([
-      new ExtractPlugin('styles.[contentHash:8].css'),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor'
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'runtime'
-      })
+      new ExtractPlugin('styles.[chunkhash:8].css'),
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: 'vendor'
+      // }),
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: 'runtime'
+      // })
     ])
   })
 }
