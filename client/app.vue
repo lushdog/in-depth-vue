@@ -2,7 +2,10 @@
   <div id="app">
     <div id="cover"></div>
     <Header></Header>
-    <todo></todo>
+    <!-- <todo></todo> -->
+    <transition name="fade">
+      <router-view />
+    </transition>
     <Footer></Footer>
   </div>
 </template>

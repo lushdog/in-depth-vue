@@ -13,7 +13,9 @@ const defaultPluins = [
       NODE_ENV: isDev ? '"development"' : '"production"'
     }
   }),
-  new HTMLPlugin()
+  new HTMLPlugin({
+    template: path.join(__dirname, 'template.html')
+  })
 ]
 
 const devServer = {
@@ -21,6 +23,10 @@ const devServer = {
   host: '0.0.0.0',
   overlay: {
     errors: true,
+  },
+  headers: { 'Access-Control-Allow-Origin': '*' },
+  historyApiFallback: {
+    index: '/public/index.html'
   },
   hot: true
 }
