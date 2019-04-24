@@ -13,9 +13,7 @@ const defaultPluins = [
       NODE_ENV: isDev ? '"development"' : '"production"'
     }
   }),
-  new HTMLPlugin({
-    template: path.join(__dirname, 'template.html')
-  })
+  new HTMLPlugin()
 ]
 
 const devServer = {
@@ -23,10 +21,6 @@ const devServer = {
   host: '0.0.0.0',
   overlay: {
     errors: true,
-  },
-  headers: { 'Access-Control-Allow-Origin': '*' },
-  historyApiFallback: {
-    index: '/public/index.html'
   },
   hot: true
 }
@@ -96,7 +90,7 @@ if (isDev) {
       runtimeChunk: true
     },
     plugins: defaultPluins.concat([
-      new ExtractPlugin('styles.[chunkhash:8].css'),
+      new ExtractPlugin('styles.[contentHash:8].css'),
       // new webpack.optimize.CommonsChunkPlugin({
       //   name: 'vendor'
       // }),

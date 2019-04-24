@@ -3,8 +3,5 @@
   "plugins": [
     "html"
   ],
-  "parser": "babel-eslint",
-  "rules": {
-    "no-new": "off"
-  }
+  "parser": "babel-eslint"
 }

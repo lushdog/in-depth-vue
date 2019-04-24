@@ -1,14 +1,5 @@
-.DS_Store
-node_modules/
-/dist/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Editor directories and files
-.idea
+node_modules
+dist
 .vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
+public
+server-build

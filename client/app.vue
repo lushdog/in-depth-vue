@@ -2,10 +2,7 @@
   <div id="app">
     <div id="cover"></div>
     <Header></Header>
-    <!-- <todo></todo> -->
-    <transition name="fade">
-      <router-view />
-    </transition>
+    <todo></todo>
     <Footer></Footer>
   </div>
 </template>
@@ -14,6 +11,8 @@
 import Header from './layout/header.vue'
 import Footer from './layout/footer.jsx'
 import Todo from './views/todo/todo.vue'
+
+console.log(Header.__docs)
 
 export default {
   components: {
